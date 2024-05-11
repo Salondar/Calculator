@@ -1,3 +1,7 @@
+const buttons = document.querySelector('#buttons');
+const screen = document.querySelector('#screen');
+
+
 function add(a, b) {
     return a + b;
 }
@@ -32,3 +36,14 @@ function operate(a, op, b) {
     }
     return result;
 }
+
+let leftOperand = ''
+buttons.addEventListener("click", (event)=> {
+    target = event.target;
+    
+    if (target.id === 'number') {
+        screen.textContent = leftOperand;
+        screen.textContent += target.textContent;
+        leftOperand = screen.textContent;
+    }
+});
