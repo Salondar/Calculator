@@ -46,4 +46,8 @@ buttons.addEventListener("click", (event)=> {
         screen.textContent += target.textContent;
         leftOperand = screen.textContent;
     }
+    else if (target.id === 'clear') {
+        leftOperand = '';
+        screen.textContent = 0;
+    }
 });
