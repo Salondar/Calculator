@@ -3,13 +3,13 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
-.calculator {
+#calculator {
     width: 350px;
     height: 500px;  
     margin: 30px auto;
 }
 
-.screen {
+#screen {
     width: 350px;
     height: 110px;
     background-color: #A4BC93;
@@ -22,13 +22,13 @@ body {
     font-size: 50px;
 }
 
-.buttonRow {
+#buttonRow {
     display: flex;
     justify-content: space-between;
 }
 
-.number,
-.operator {
+#number,
+#operator {
     border: none;
     width: 80px;
     height: 80px;
@@ -38,8 +38,8 @@ body {
     font-size: 30px;
 }
 
-.clear, 
-.equals {
+#clear, 
+#equals {
     border: none;
     width: 170px;
     height: 80px;
@@ -49,10 +49,10 @@ body {
     color: white;
 }
 
-.equals {
+#equals {
     background-color: red;
 }
 
-.clear {
+#clear {
     background-color: #1A2421;
 }
