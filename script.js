@@ -11,6 +11,9 @@ function subtract(a, b) {
 }
 
 function divide(a, b) {
+    if (b === 0) {
+        return 'ERROR';
+    }
     return a / b;
 }
 
@@ -37,7 +40,8 @@ function operate(a, op, b) {
     return result;
 }
 
-let leftOperand = ''
+let leftOperand = '';
+let rightOperand = '';
 buttons.addEventListener("click", (event)=> {
     target = event.target;
     
