@@ -56,3 +56,13 @@ body {
 #clear {
     background-color: #1A2421;
 }
+
+#delete {
+    border: none;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 30px;
+}
