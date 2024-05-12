@@ -33,7 +33,7 @@ function operate(a, op, b) {
         case "/":
             result = divide(a, b);
             break;
-        case "*":
+        case "x":
             result = multiply(a, b);
             break;
     }
@@ -41,17 +41,41 @@ function operate(a, op, b) {
 }
 
 let leftOperand = '';
-let rightOperand = '';
+let rightOperand;
+let operatorON = false;
+let operator;
+
 buttons.addEventListener("click", (event)=> {
     target = event.target;
     
-    if (target.id === 'number') {
+    if (target.id === 'number' && operatorON === false) {
         screen.textContent = leftOperand;
         screen.textContent += target.textContent;
         leftOperand = screen.textContent;
     }
+    else if (target.id === 'number' && operatorON === true) {
+        screen.textContent = rightOperand;
+        screen.textContent += target.textContent;
+        rightOperand = screen.textContent;
+    }
+    else if (target.id === 'operator') {
+        operator = target.textContent;
+        operatorON = true;
+        rightOperand = '';
+    }
     else if (target.id === 'clear') {
         leftOperand = '';
+        rightOperand = '';
+        operatorON = false;
         screen.textContent = 0;
+    }
+    else if (target.id === 'equals') {
+        if (rightOperand === '') {
+            leftOperand = operate(Number(leftOperand), operator, Number(leftOperand));
+        }
+        else {
+            leftOperand = operate(Number(leftOperand), operator, Number(rightOperand));
+        }
+        screen.textContent = leftOperand;
     }
 });
