@@ -9,7 +9,8 @@ body {
     margin: 30px auto;
 }
 
-#screen {
+#display {
+    border: none;
     width: 350px;
     height: 110px;
     background-color: #A4BC93;
