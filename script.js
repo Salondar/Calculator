@@ -118,4 +118,22 @@ buttons.addEventListener('click', (event) => {
             }
         }
     }
+    else if (target.id === 'delete') {
+        if (display.textContent === '' && isOperatorON === false) {
+            display.textContent = 0;
+            leftOperand = '';
+        }
+        else if (display.textContent === ''&& isOperatorON === true) {
+            display.textContent = 0;
+            rightOperand = '';
+        }
+        else if  (isOperatorON === false) {
+            leftOperand = display.textContent.slice(0, display.textContent.length - 1);
+            display.textContent = leftOperand;
+        }
+        else {
+            rightOperand = display.textContent.slice(0, display.textContent.length - 1);
+            display.textContent = rightOperand;
+        }
+    }
 });
