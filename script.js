@@ -1,10 +1,26 @@
 const buttons = document.querySelector('#buttons');
 const display = document.querySelector('#display');
-const DISPLAY_SIZE = 11;
+const DISPLAY_SIZE = 12;
 
+function formattedResult(number) {
+    let temp = number + '';
+
+    if (Number.isInteger(number)) {
+        return number;
+    }
+    else {
+        if (temp.length < DISPLAY_SIZE) {
+            return number;
+        }
+        else {
+            i = temp.indexOf('.');
+            return number.toPrecision(9);
+        }
+    }
+}
 
 function fitsOnDisplay(number) {
-    let temp = number + "";
+    let temp = number + '';
     if (Number.isInteger(number)) {
         if (temp.length < DISPLAY_SIZE) {
             return true;
@@ -29,6 +45,7 @@ function add(a, b) {
     let fits = fitsOnDisplay(result);
 
     if (fits === true) {
+        result = formattedResult(result);
         return result;
     }
     else {
@@ -41,6 +58,7 @@ function subtract(a, b) {
     let fits = fitsOnDisplay(result);
 
     if (fits === true) {
+        result = formattedResult(result);
         return result;
     }
     else {
@@ -56,6 +74,7 @@ function divide(a, b) {
     let fits = fitsOnDisplay(result);
 
     if (fits === true) {
+        result = formattedResult(result);
         return result;
     }
     else {
@@ -68,6 +87,7 @@ function multiply(a, b) {
     let fits = fitsOnDisplay(result);
 
     if (fits === true) {
+        result = formattedResult(result);
         return result;
     }
     else {
