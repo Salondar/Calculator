@@ -59,3 +59,7 @@ body {
 #clear{
     background-color: #1A2421;
 }
+
+button {
+    background-color: white;
+}
