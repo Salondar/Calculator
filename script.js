@@ -1,16 +1,46 @@
 const buttons = document.querySelector('#buttons');
 const display = document.querySelector('#display');
 const DISPLAY_SIZE = 11;
-const MAX_RESULT = 99999999999;
-const MIN_RESULT = 0.000000001;
+
+
+function fitsOnDisplay(number) {
+    let temp = number + "";
+    if (Number.isInteger(number)) {
+        if (temp.length < DISPLAY_SIZE) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    else {
+        const i = temp.indexOf('.');
+        if (i < DISPLAY_SIZE - 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
 
 function add(a, b) {
-    return ((a + b) > MAX_RESULT ? 'NaN': a + b);
+    let result = a + b;
+    let fits = fitsOnDisplay(result);
+
+    if (fits === true) {
+        return result;
+    }
+    else {
+        return 'NaN';
+    }
 }
 
 function subtract(a, b) {
-    result = (a - b) + '';
-    if (result.length < DISPLAY_SIZE) {
+    let result = a - b;
+    let fits = fitsOnDisplay(result);
+
+    if (fits === true) {
         return result;
     }
     else {
@@ -22,8 +52,10 @@ function divide(a, b) {
     if (b === 0) {
         return 'ERROR';
     }
-    result = (a / b) + '';
-    if (result.length < DISPLAY_SIZE) {
+    let result = a / b;
+    let fits = fitsOnDisplay(result);
+
+    if (fits === true) {
         return result;
     }
     else {
@@ -32,7 +64,15 @@ function divide(a, b) {
 }
 
 function multiply(a, b) {
-    return ((a * b) > MAX_RESULT ? 'NaN' : a * b);
+    let result = a * b;
+    let fits = fitsOnDisplay(result);
+
+    if (fits === true) {
+        return result;
+    }
+    else {
+        return 'NaN';
+    }
 }
 
 function operate(a, op, b) {
@@ -63,6 +103,7 @@ buttons.addEventListener('click', (event) => {
     target = event.target;
 
     if (target.id === 'number' && isOperatorON === false) {
+
         display.textContent = leftOperand;
         if (leftOperand.length < DISPLAY_SIZE) {
             leftOperand += target.textContent;
@@ -119,11 +160,11 @@ buttons.addEventListener('click', (event) => {
         }
     }
     else if (target.id === 'delete') {
-        if (display.textContent === '' && isOperatorON === false) {
+        if (display.textContent.length === 1 && isOperatorON === false) {
             display.textContent = 0;
             leftOperand = '';
         }
-        else if (display.textContent === ''&& isOperatorON === true) {
+        else if (display.textContent === 1 && isOperatorON === true) {
             display.textContent = 0;
             rightOperand = '';
         }
