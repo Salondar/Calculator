@@ -1,6 +1,6 @@
 const buttons = document.querySelector('#buttons');
 const display = document.querySelector('#display');
-const DISPLAY_SIZE = 12;
+const DISPLAY_SIZE = 11;
 
 function formattedResult(number) {
     let temp = number + '';
@@ -119,25 +119,28 @@ let rightOperand;
 let isOperatorON = false;
 let operator;
 
-buttons.addEventListener('click', (event) => {
+buttons.addEventListener('mousedown', (event) => {
     target = event.target;
 
-    if (target.id === 'number' && isOperatorON === false) {
-
-        display.textContent = leftOperand;
-        if (leftOperand.length < DISPLAY_SIZE) {
-            leftOperand += target.textContent;
-            display.textContent = leftOperand
+    if (target.id === 'number') {
+        target.style.backgroundColor = '#81C784';
+           if (isOperatorON === false) {
+            display.textContent = leftOperand;
+            if (leftOperand.length < DISPLAY_SIZE) {
+                leftOperand += target.textContent;
+                display.textContent = leftOperand
+            }
         }
-    }
-    else if (target.id === 'number' && isOperatorON === true) {
-        display.textContent = rightOperand;
-        if (rightOperand.length < DISPLAY_SIZE) {
-            rightOperand += target.textContent;
+        else if (isOperatorON === true) {
             display.textContent = rightOperand;
+            if (rightOperand.length < DISPLAY_SIZE) {
+                rightOperand += target.textContent;
+                display.textContent = rightOperand;
+            }
         }
     }
     else if (target.id === 'operator') {
+        target.style.backgroundColor = '#4682B4';
         if (isOperatorON === true) {
             if (rightOperand === '') {
                 leftOperand = operate(Number(leftOperand), operator, Number(leftOperand));
@@ -152,6 +155,7 @@ buttons.addEventListener('click', (event) => {
         isOperatorON = true;
     }
     else if (target.id === 'equals') {
+        target.style.backgroundColor = '#2E8B57';
         if (rightOperand === '' && isOperatorON === true) {
             leftOperand = operate(Number(leftOperand), operator, Number(leftOperand));
         }
@@ -163,12 +167,14 @@ buttons.addEventListener('click', (event) => {
         display.textContent = leftOperand;
     }
     else if (target.id === 'clear') {
+        target.style.backgroundColor = '#32612D';
         display.textContent = 0;
         leftOperand = '';
         rightOperand = '';
         isOperatorON = false;
     }
     else if (target.id === 'dot') {
+        target.style.backgroundColor = '#81C784';
         if (display.textContent.includes('.') === false) {
             display.textContent += target.textContent;
             if (isOperatorON === false) {
@@ -180,6 +186,7 @@ buttons.addEventListener('click', (event) => {
         }
     }
     else if (target.id === 'delete') {
+        target.style.backgroundColor = '#81C784';
         if (display.textContent.length === 1 && isOperatorON === false) {
             display.textContent = 0;
             leftOperand = '';
@@ -196,5 +203,22 @@ buttons.addEventListener('click', (event) => {
             rightOperand = display.textContent.slice(0, display.textContent.length - 1);
             display.textContent = rightOperand;
         }
+    }
+});
+
+buttons.addEventListener("mouseup", (event) => {
+    target = event.target;
+
+    if (target.id === 'number' || 
+       target.id === 'delete' || 
+       target.id === 'dot' ||
+       target.id === 'operator') {
+        target.style.backgroundColor = 'white';
+    }
+    else if (target.id == 'equals') {
+        target.style.backgroundColor = 'red';
+    }
+    else if (target.id === 'clear') {
+        target.style.backgroundColor = '#1A2421'
     }
 });
